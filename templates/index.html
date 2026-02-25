@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Weather — Web</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <link rel="stylesheet" href="/static/css/style.css" />
+  </head>
+  <body>
+    <section class="section">
+      <div class="container">
+        <nav class="level">
+          <div class="level-left">
+            <div class="level-item">
+              <h1 class="title">Weather Dashboard</h1>
+            </div>
+            <div class="level-item">
+              <p class="subtitle">Environment: <strong>{{ environment }}</strong></p>
+            </div>
+          </div>
+          <div class="level-right">
+            <div class="level-item">
+              <a href="/api/docs" class="button is-link is-light">API Docs</a>
+            </div>
+          </div>
+        </nav>
+
+        <div class="columns">
+          <div class="column is-two-thirds">
+            <div class="box">
+              <div class="field is-grouped">
+                <p class="control is-expanded">
+                  <span class="select is-fullwidth">
+                    <select id="locations-select">
+                      <option value="">-- Choose or type --</option>
+                    </select>
+                  </span>
+                </p>
+                <p class="control">
+                  <button id="load-india" class="button is-light" title="Load stored locations within India">India</button>
+                </p>
+                <div class="control">
+                  <button id="search-btn" class="button is-info">Search</button>
+                </div>
+                <div class="control">
+                  <button id="refresh-btn" class="button is-light">Refresh</button>
+                </div>
+              </div>
+
+              <div id="results" class="content">Loading...</div>
+            </div>
+          </div>
+
+          <div class="column">
+            <div class="box">
+              <h2 class="title is-5">Create Weather Request</h2>
+              <form id="create-form">
+                <div class="field">
+                  <label class="label">Location</label>
+                  <div class="control">
+                    <input id="create-location" class="input" required placeholder="e.g. San Francisco" />
+                  </div>
+                </div>
+
+                <div class="field">
+                  <label class="label">Start Date</label>
+                  <div class="control">
+                    <input id="create-start" class="input" type="datetime-local" required />
+                  </div>
+                </div>
+
+                <div class="field">
+                  <label class="label">End Date</label>
+                  <div class="control">
+                    <input id="create-end" class="input" type="datetime-local" required />
+                  </div>
+                </div>
+
+                <div class="field">
+                  <div class="control">
+                    <button class="button is-primary" type="submit">Create</button>
+                  </div>
+                </div>
+              </form>
+              <div id="create-result" />
+            </div>
+          </div>
+        </div>
+
+        <!-- details modal -->
+        <div id="details-modal" class="modal">
+          <div class="modal-background"></div>
+          <div class="modal-card">
+            <header class="modal-card-head">
+              <p id="modal-title" class="modal-card-title">Details</p>
+              <button class="delete" aria-label="close" id="modal-close"></button>
+            </header>
+            <section class="modal-card-body" id="modal-body">
+              Loading...
+            </section>
+            <footer class="modal-card-foot">
+              <button class="button" id="modal-close-2">Close</button>
+            </footer>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <script src="/static/js/app.js"></script>
+  </body>
+</html>
